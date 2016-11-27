@@ -1,0 +1,26 @@
+  .ms-landing-page__content {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+            flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    height: 100%;
+    -webkit-flex: 1 1 0;
+            flex: 1 1 0;
+    padding: 20px; }
+    .ms-landing-page__content h2 {
+      margin-bottom: 20px; }
+
+
+
+
+
+.ms-Callout {
+    font-family: "Segoe UI WestEuropean","Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+    -webkit-font-smoothing: antialiased;
+    box-shadow: 0 0 15px -5px rgba(0,0,0,.4);
+    position: absolute;
+    border: 1px solid #eaeaea;
+    box-sizing: border-box;
+}

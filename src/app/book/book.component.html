@@ -1,0 +1,86 @@
+<main class="ms-landing-page__main">
+    <section class="ms-landing-page__content ms-font-m ms-fontColor-neutralPrimary">
+        <form class="Form" #drivingFrom="ngForm" (ngSubmit)="create()">
+
+            <div class="ms-Toggle">
+                <span class="ms-Toggle-description">When do you want to create transport placeholder?</span>
+                <input type="checkbox" [(ngModel)]="beforeMeeting" name="beforeMeeting" id="demo-toggle-3" (click)="onChangeBeforeMeeting()"
+                    class="ms-Toggle-input" />
+                <label for="demo-toggle-3" [class.is-selected]="beforeMeeting" class="ms-Toggle-field" tabindex="0">
+                    <span class="ms-Label ms-Label--off">After meeting</span> 
+                    <span class="ms-Label ms-Label--on">Before meeting</span>
+                </label>
+            </div>
+
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">Transport placeholder subject</label>
+                <input [(ngModel)]="subject" name="subject" class="ms-TextField-field" type="text" required ngControl="subject">
+            </div>
+
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">Origin</label>
+                <input [(ngModel)]="origin" name="origin" class="ms-TextField-field" type="text" required ngControl="origin" (blur)="search()">
+                <span class="ms-TextField-description">Where are you driving from?</span>
+            </div>
+
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">Destination</label>
+                <input [(ngModel)]="destination" name="destination" class="ms-TextField-field" type="text" required ngControl="destination"
+                    (blur)="search()">
+                <span class="ms-TextField-description">Where are you driving to?</span>
+            </div>
+
+
+            <div class="SubmitButton ms-Grid">
+                <div class="ms-Grid-row">
+                    <div class="ms-Grid-col ms-u-sm10">
+                        <button (click)="search()" [disabled]="!destination || !origin || inprogress" type="button" class="ms-Button">
+                            <span class="ms-Button-label" *ngIf="!inprogress">Calculate transport time</span>
+                            <span class="ms-Button-label" *ngIf="inprogress">Calculating ...</span>
+                            </button>
+                    </div>
+                    <div class="ms-Grid-col  ms-u-sm2">
+                        <p class="ms-font-s"><a class="ms-Link" style="line-height: 32px;" (click)="HowTo.show()">How?</a></p>
+                    </div>
+                </div>
+            </div>
+            <div [hidden]="!estimateDrivingTimeError">
+                <div class="ms-MessageBar ms-MessageBar--error">
+                    <div class="ms-MessageBar-content">
+                        <div class="ms-MessageBar-icon"><i class="ms-Icon ms-Icon--xCircle"></i></div>
+                        <div class="ms-MessageBar-text">Unable to estiamte driving time! Try to be more specific with origin and destination.</div>
+                    </div>
+                </div>
+            </div>
+
+            <app-dialog #HowTo></app-dialog>
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">Estimated driving time</label>
+                <input [(ngModel)]="length" name="length" class="ms-TextField-field" type="text" placeholder="N/A" required ngControl="length">
+                <span class="ms-TextField-description">The time estimated to drive between the two locations in minutes</span>
+            </div>
+
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">Recipients</label>
+                <input [(ngModel)]="recipients" name="recipients" class="ms-TextField-field" type="text" required ngControl="recipients">
+                <span class="ms-TextField-description">Who should recieve the transport placeholder?</span>
+            </div>
+            <div class="SubmitButton">
+                <button [disabled]="saveInProgress || !drivingFrom.form.valid" type="submit" class="ms-Button ms-Button--primary"><span class="ms-Button-label">Book Transport Placeholder</span></button>
+            </div>
+            <div *ngIf="saveComplete" class="ms-Callout saveComplete">
+                <div class="ms-Callout ms-Callout--peek ms-Callout--arrowLeft">
+                    <div class="ms-Callout-main">
+                        <div class="ms-Callout-header">
+                            <p class="ms-Callout-title">The transport placeholder meeting was saved.</p>
+                        </div>
+                        <div class="ms-Callout-inner">
+                            <div class="ms-Callout-actions"><button class="ms-Callout-button ms-Button" (click)="dismissSaveComplete()"> <span class="ms-Button-label">Ok</span> <span class="ms-Button-description">Click Ok to dismiss</span> </button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </section>
+</main>

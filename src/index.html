@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/5.0.1/css/fabric.min.css">
+  <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.components.min.css">
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+  <meta name="description" content="<%= htmlWebpackPlugin.options.title %>">
+
+  <% if (webpackConfig.htmlElements.headTags) { %>
+  <!-- Configured Head Tags  -->
+  <%= webpackConfig.htmlElements.headTags %>
+  <% } %>
+
+  <!-- base url -->
+  <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
+
+
+</head>
+
+<body>
+
+  <app>
+    <div class="ms-Spinner"><div class="ms-Spinner-circle ms-Spinner--large"></div></div>
+  </app>
+
+
+
+  <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
+  <!-- Webpack Dev Server reload -->
+  <script src="/webpack-dev-server.js"></script>
+  <% } %>
+
+
+</body>
+</html>
